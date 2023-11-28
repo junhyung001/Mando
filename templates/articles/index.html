@@ -1,0 +1,47 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8" /> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{% static 'articles/css/mando.css' %}" />
+        <link rel="stylesheet" href="{% static 'articles/css/style.css' %}" />
+        <script src="{% static 'articles/js/mando.js' %}"></script>
+        <title>man-do!</title>
+    </head>
+    <body>
+      <div>
+        <div class="display-container">
+          <div class="background-image"><img src="{% static 'articles/source/img/page.png' %}" alt="배경" /></div>
+          <div class="user-mold">
+            <span id="user-name">{{ user.username }}</span><span>님의 만두판</span>
+          </div>
+          <div class="image-grid">
+            
+              {% for articles in articles%}
+                {%if articles %}
+                <a href="{ % url 'articles:detail' articles.pk% }"><img
+                  id="mold1"
+                  src="{% static 'articles/source/img/mold.png' %}"
+                  alt="만두틀"
+                />
+              </a>
+                {%endif%}
+              {%endfor%}
+            
+          </div>
+        <div id="link">
+          <img src="link.png" alt="공유하기" onclick="showLinkAlert();copyLink()" />
+        </div>
+        <img
+          id="link-alert"
+          src="{% static 'articles/source/img/link-alert.png' %}"
+          alt="링크가복사되었습니다"
+          style="display: none"
+        />
+        
+        <img id="reset-guide" src="{% static 'articles/source/img/reset_quide.png' %}"alt="만두리셋" style="display: none"  />
+        <a href="{% url 'articles:create' %}" class="write-link">글쓰기</a>
+      </div>
+      
+    </body>

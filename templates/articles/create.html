@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'articles/css/create.css' %}">
+    <link rel="stylesheet" type=" text/css" href="style.css">
+    <title>man-do!</title>
+</head>
+<h1>CREATE</h1>
+<hr>
+<form action="{% url 'articles:create' %}" method="POST" enctype="multipart/form-data">
+    
+    <input type="submit" value="Submit">
+    <div class="display-container">
+        <div class="background-image"><img src="{% static 'articles/source/img/page.png' %}" alt="배경"></div>
+        
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="img-preview"><img src="{% static 'articles/source/img/upload.png' %}" id="uploadTrigger"alt="이미지"></div>
+        </div>
+    </div>
+</form>
+<hr>
+<a href="{% url 'articles:index' %}">[BACK]</a>
